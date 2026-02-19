@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ксю 30! 🎂💜</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Caveat:wght@700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple-dark: #2d1b4e;
+            --purple-main: #6b46c1;
+            --purple-light: #9f7aea;
+            --purple-neon: #d6bcfa;
+            --winter-blue: #4a5568;
+            --accent: #ffd700;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 25%, #553c9a 50%, #6b46c1 75%, #805ad5 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 20s ease infinite;
+            min-height: 100vh;
+            overflow: hidden;
+            color: white;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Снежинки */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: rgba(255,255,255,0.8);
+            font-size: 1.5rem;
+            animation: fall linear infinite;
+            z-index: 1000;
+            pointer-events: none;
+            text-shadow: 0 0 10px rgba(214, 188, 250, 0.8);
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            opacity: 0;
+            transform: scale(0.8) rotateY(90deg);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            perspective: 1000px;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) rotateY(0);
+        }
+
+        .slide.prev {
+            transform: scale(1.2) rotateY(-90deg);
+            opacity: 0;
+        }
+
+        /* Титульный слайд */
+        .title-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(159, 122, 234, 0.5);
+            border-radius: 40px;
+            padding: 60px 80px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 0 50px rgba(159, 122, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .age-number {
+            font-size: 12rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            text-shadow: none;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));
+            animation: pulse-gold 2s ease infinite;
+        }
+
+        @keyframes pulse-gold {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 50px rgba(255, 215, 0, 0.8)); }
+        }
+
+        .title-name {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-top: -20px;
+            color: white;
+            text-shadow: 0 0 20px rgba(159, 122, 234, 0.8);
+        }
+
+        .subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            color: var(--purple-neon);
+            margin-top: 20px;
+            transform: rotate(-3deg);
+        }
+
+        /* Эмодзи анимация */
+        .floating-emoji {
+            font-size: 4rem;
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Вопросы */
+        .question-card {
+            background: rgba(255,255,255,0.95);
+            color: #2d3748;
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 900px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #6b46c1, #9f7aea, #d6bcfa);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .question-number {
+            background: linear-gradient(135deg, #6b46c1, #9f7aea);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-category {
+            font-size: 0.8rem;
+            color: #718096;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .question-text {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .option-btn {
+            padding: 20px 25px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #4a5568;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #6b46c1, #9f7aea);
+            transition: width 0.3s ease;
+            z-index: 0;
+        }
+
+        .option-btn:hover::before {
+            width: 100%;
+        }
+
+        .option-btn:hover {
+            color: white;
+            border-color: #6b46c1;
+            transform: translateX(5px);
+        }
+
+        .option-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .option-btn.correct {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            border-color: #38a169;
+            color: white;
+            animation: correct-pop 0.5s ease;
+        }
+
+        .option-btn.wrong {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            border-color: #e53e3e;
+            color: white;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes correct-pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-10px); }
+            40% { transform: translateX(10px); }
+            60% { transform: translateX(-10px); }
+            80% { transform: translateX(10px); }
+        }
+
+        .fun-fact {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2d1b4e, #553c9a);
+            color: white;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            border-left: 5px solid #ffd700;
+        }
+
+        .fun-fact.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fun-fact strong {
+            color: #ffd700;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Специальные слайды */
+        .intro-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(159, 122, 234, 0.3);
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .intro-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--purple-neon);
+        }
+
+        .intro-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: 700;
+        }
+
+        /* Финальный слайд */
+        .final-card {
+            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(107,70,193,0.3));
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(255,215,0,0.5);
+            border-radius: 40px;
+            padding: 60px;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .final-emoji {
+            font-size: 6rem;
+            margin-bottom: 20px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .final-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffd700, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .final-motto {
+            font-family: 'Caveat', cursive;
+            font-size: 3rem;
+            color: var(--purple-neon);
+            margin: 30px 0;
+            transform: rotate(-2deg);
+        }
+
+        /* Навигация */
+        .nav-buttons {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            padding: 18px 35px;
+            background: rgba(255,255,255,0.95);
+            color: #6b46c1;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            background: white;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ffd700, #9f7aea);
+            transition: width 0.5s ease;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .score-display {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.95);
+            color: #6b46c1;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 100;
+            border: 2px solid #ffd700;
+        }
+
+        .cat-paw {
+            position: fixed;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: paw-float 4s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes paw-float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-30px) rotate(20deg); opacity: 0.6; }
+        }
+
+        @media (max-width: 768px) {
+            .age-number { font-size: 7rem; }
+            .title-name { font-size: 2.5rem; }
+            .question-card { padding: 30px; }
+            .options { grid-template-columns: 1fr; }
+            .question-text { font-size: 1.3rem; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="score-display" id="scoreDisplay" style="display: none;">💜 Знаете Ксю: 0/15</div>
+
+    <!-- Декоративные элементы -->
+    <div class="cat-paw" style="top: 10%; left: 5%;">🐾</div>
+    <div class="cat-paw" style="top: 70%; right: 10%; animation-delay: 1s;">🐾</div>
+    <div class="cat-paw" style="bottom: 20%; left: 15%; animation-delay: 2s;">🐾</div>
+
+    <!-- Слайд 1: Титульный -->
+    <div class="slide active" data-slide="0">
+        <div class="title-card">
+            <div class="floating-emoji" style="top: -30px; left: -30px;">❄️</div>
+            <div class="floating-emoji" style="bottom: -20px; right: -20px; animation-delay: 0.5s;">💜</div>
+            <div class="age-number">30</div>
+            <div class="title-name">КСЮ</div>
+            <div class="subtitle">22 февраля — зимняя королева уюта!</div>
+        </div>
+    </div>
+
+    <!-- Слайд 2: Интро -->
+    <div class="slide" data-slide="1">
+        <div class="intro-card">
+            <div style="font-size: 4rem; margin-bottom: 20px;">🎭</div>
+            <h2>Викторина «Насколько ты Ксю?»</h2>
+            <p class="intro-text">
+                Сегодня мы проверим, кто настоящий друг, а кто просто пришёл за бургером.<br><br>
+                <span class="highlight">15 вопросов</span> о самом загадочном создании после кошки Шрёдингера.<br><br>
+                Готовы узнать правду? 😈
+            </p>
+        </div>
+    </div>
+
+    <!-- Слайд 3: Правила -->
+    <div class="slide" data-slide="2">
+        <div class="intro-card" style="max-width: 800px;">
+            <div style="font-size: 4rem; margin-bottom: 20px;">📜</div>
+            <h2>Правила простые:</h2>
+            <div style="text-align: left; font-size: 1.2rem; line-height: 2.2;">
+                <p>❄️ <span class="highlight">Зима</span> — время отвечать честно (или нет)</p>
+                <p>💜 Выбирайте вариант и молитесь</p>
+                <p>🏆 Победитель получит... моё уважение (и maybe печеньку)</p>
+                <p>☕ Если ошибётесь — Ксю будет смотреть на вас как на кофе без сахара</p>
+                <p>🐱 Олаф и Луна следят за вами!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 1: Цвет -->
+    <div class="slide" data-slide="3">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 1</span>
+                <span class="question-category">Эстетика</span>
+            </div>
+            <div class="question-text">Если бы Ксю была супергероем, какой был бы цвет её костюма?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>🔴 Красный (слишком банально)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>🟣 Фиолетовый (королевский выбор)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>🔵 Синий (скучно)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>⚫ Чёрный (не её стиль)</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>💜 Факт:</strong> Фиолетовый — цвет королей и провидцев. Ксю выбрала его не случайно, ведь она предвидит, где скидки в Zara за неделю до распродажи!
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 2: Время года -->
+    <div class="slide" data-slide="4">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 2</span>
+                <span class="question-category">Астрология</span>
+            </div>
+            <div class="question-text">Когда Ксю чувствует себя в своей тарелке?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>🌸 Весной (цветочки, романтика)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>☀️ Летом (жара, пляжи)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>❄️ Зимой (уют, пледы, кайф)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>🍂 Осенью (листья, депрессия)</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>❄️ Факт:</strong> 22 февраля — день рождения настоящей снежной королевы! Она родилась зимой и зимой же правит. Лето для неё — это просто большая перерыв между уютными вечерами.
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 3: Кофе -->
+    <div class="slide" data-slide="5">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 3</span>
+                <span class="question-category">Выживание</span>
+            </div>
+            <div class="question-text">Что нужно Ксю для жизни с утра?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>🍵 Зелёный чай (полезно же)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>☕ Чёрный кофе, не крепкий (классика)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>🥤 Энергетик (для диких)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>💧 Вода (кто ты, воин?)</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>☕ Факт:</strong> Кофе для Ксю — как бензин для Ferrari. Не крепкий, но обязательно чёрный. Латте с сиропом? Это для слабаков, которые не готовы к жизни в 30.
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 4: Еда -->
+    <div class="slide" data-slide="6">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 4</span>
+                <span class="question-category">Гастрономия</span>
+            </div>
+            <div class="question-text">Если бы Ксю могла есть одно блюдо всю жизнь?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>🍣 Суши (дорого-богато)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>🍕 Пицца (тоже вариант)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>🧀 Макароны с сыром (комфорт-фуд)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>🥗 Салат (вы серьёзно?)</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>🧀 Факт:</strong> Макароны с сыром — это не просто еда, это эмоция. Ксю может есть их 3 раза в неделю и не жалеть. Диета? Не, не слышала. Жизнь одна!
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 5: Сериал -->
+    <div class="slide" data-slide="7">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 5</span>
+                <span class="question-category">Культура</span>
+            </div>
+            <div class="question-text">Какой сериал Ксю пересматривала раз 10?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Друзья (классика, но нет)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>Футурама (Бендер её духовный живот)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Рик и Морти (слишком много фанатов)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Игра престолов (финал испортил всё)</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>🤖 Факт:</strong> Ксю знает наизусть фразы Бендера. "Пока не задвинешь челюсть — не откроешь рот" — её жизненный девиз. Футурама — это не мультик, это философия.
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 6: Музыка -->
+    <div class="slide" data-slide="8">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 6</span>
+                <span class="question-category">Музыка</span>
+            </div>
+            <div class="question-text">Что играет в наушниках Ксю, когда она красит ресницы?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Леди Гага (too mainstream)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Билли Айлиш (too sad)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>Boston Manor (😎 именно так)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Лобода (не, ну а вдруг?)</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>🎸 Факт:</strong> Boston Manor — это не просто группа, это настроение. Ксю слушает их и чувствует себя главной героиней фильма, где она точно не опаздывает на работу (хотя опаздывает).
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 7: Режим -->
+    <div class="slide" data-slide="9">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 7</span>
+                <span class="question-category">Биоритмы</span>
+            </div>
+            <div class="question-text">Какой у Ксю режим сна?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Ложусь в 22:00, встаю в 6:00 (скучно)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Ложусь в 3 ночи, встаю в 12 (художник)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>Зависит от дня (гибрид жаворонка и совы)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Не сплю вообще (вампир)</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>🦉 Факт:</strong> Ксю — редкий гибрид. Сегодня она жаворонок, завтра сова, послезавтра — непонятно что. Её организм работает по принципу: "Когда надо — проснусь". Логистика и ресницы ждут никого!
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 8: Характер -->
+    <div class="slide" data-slide="10">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 8</span>
+                <span class="question-category">Психология</span>
+            </div>
+            <div class="question-text">Кто такая Ксю на самом деле?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Интроверт (сидит дома)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Экстраверт (вечная тусовщица)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>Амбиверт (зависит от настроения)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Экзорцист (изгоняет людей)</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>🎭 Факт:</strong> Ксю может быть душой компании на вечеринке, а потом исчезнуть на 3 дня "побыть с собой". Это не двойственность, это амбивертность. Сегодня тусуем, завтра — тишина и коты.
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 9: Питомцы -->
+    <div class="slide" data-slide="11">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 9</span>
+                <span class="question-category">Зоопарк</span>
+            </div>
+            <div class="question-text">Кто живёт у Ксю дома и кого она хочет добавить?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>1 попугай, мечтает о слоне</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>2 кота Олаф и Луна, мечтает об австралийской овчарке</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>3 собаки, мечтает о кошке</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Только растения (minimalism)</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>🐱 Факт:</strong> Олаф и Луна — это не просто коты, это члены семьи с характером. А мечта об австралийской овчарке? Это план на будущее, когда будет больше времени и меньше ресниц (шутка, ресницы вечны).
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 10: Хобби -->
+    <div class="slide" data-slide="12">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 10</span>
+                <span class="question-category">Досуг</span>
+            </div>
+            <div class="question-text">Чем Ксю занимается, когда не делает ресницы?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Смотрит сериалы только (лень)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>Выращивает цветы и ходит в зал</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Пишет роман (пока нет)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Спит (тоже, но не только)</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>🌸💪 Факт:</strong> Ксю — человек-контраст: нежные цветы и железный зал. Она может час ухаживать за фикусом, а потом пожать 100 кг (ну или стремится к этому). Баланс во всём!
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 11: Что ненавидит -->
+    <div class="slide" data-slide="13">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 11</span>
+                <span class="question-category">Триггеры</span>
+            </div>
+            <div class="question-text">Что выводит Ксю из себя больше всего?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Громкие звуки (но нет)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>Медленных людей (АААА!)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Непонятные инструкции (тоже, но не главное)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Когда чай остывает (да, но нет)</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>⚡ Факт:</strong> Медленные люди для Ксю — как красная тряпка для быка. Она уже сделала 5 дел, а кто-то всё ещё ищет ключи. Скорость — её второе имя (после Ксю, очевидно).
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 12: Мечта -->
+    <div class="slide" data-slide="14">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 12</span>
+                <span class="question-category">Мечты</span>
+            </div>
+            <div class="question-text">Куда Ксю хочет сбежать из зимы?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Бали (too basic)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>Португалия (винишко и океан)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Исландия (холодно же)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Таиланд (too туристично)</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>🍷🌊 Факт:</strong> Португалия — это мечта о вкусной еде, вине и океане. Ксю представляет: сидит на балконе, пьёт винишко, смотрит на закат... а потом вспоминает, что у неё завтра 5 клиентов на ресницы.
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 13: Работа -->
+    <div class="slide" data-slide="15">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 13</span>
+                <span class="question-category">Карьера</span>
+            </div>
+            <div class="question-text">Какие две профессии удерживают Ксю в этом мире?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Блогер и флорист</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>Мастер по ресницам и логист</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Повар и певица</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Фотограф и психолог</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>👁️📦 Факт:</strong> Днем — ресницы, ночью — логистика. Ксю может сделать тебе идеальные глаза, а потом организовать доставку контейнера из Китая. Мультитаскинг на максимум!
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 14: История -->
+    <div class="slide" data-slide="16">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 14</span>
+                <span class="question-category">Детство</span>
+            </div>
+            <div class="question-text">Что Ксю сделала в 5 лет перед фотосессией в садике?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Украла печенье у воспитателя</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>Сбрила брови (мода такая)</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Покрасила волосы в зелёный</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Убежала из садика</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>✂️ Факт:</strong> Да-да, в 5 лет Ксю решила, что брови — это лишнее. Результат? Фотосессия с "удивлённым" выражением лица (где брови???). Это предвестник её дерзости на всю жизнь!
+            </div>
+        </div>
+    </div>
+
+    <!-- Вопрос 15: Суперсила -->
+    <div class="slide" data-slide="17">
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Вопрос 15</span>
+                <span class="question-category">Суперсилы</span>
+            </div>
+            <div class="question-text">Что умеет Ксю лучше всех?</div>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Находить WiFi везде</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, true)"><span>Находить плюсы во всём</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Засыпать за 5 секунд</span></button>
+                <button class="option-btn" onclick="checkAnswer(this, false)"><span>Помнить все пароли</span></button>
+            </div>
+            <div class="fun-fact">
+                <strong>✨ Факт:</strong> Даже в самой грязной ситуации Ксю найдёт плюс. Провалился проект? Опыт! Сломалась машина? Прогулка! Нет кофе?... Нет, это катастрофа. Но в целом — она оптимистка с железными нервами.
+            </div>
+        </div>
+    </div>
+
+    <!-- Финальный слайд -->
+    <div class="slide" data-slide="18">
+        <div class="final-card">
+            <div class="final-emoji">🎉💜❄️</div>
+            <div class="final-title">Ксю 30!</div>
+            <p style="font-size: 1.3rem; color: rgba(255,255,255,0.9); margin-bottom: 20px;">
+                Теперь вы знаете, что Ксю — это:<br>
+                ❄️ Зимняя королева уюта<br>
+                ☕ Кофейный гурман<br>
+                🧀 Макаронный эксперт<br>
+                👁️ Мастер ресниц и логистики<br>
+                🐱 Мама Олафа и Луны<br>
+                💜 Фиолетовая мечтательница
+            </p>
+            <div class="final-motto">«Хуже уже не будет»</div>
+            <div id="finalScore" style="font-size: 1.8rem; font-weight: 700; color: #ffd700; margin-top: 20px;"></div>
+            <p style="margin-top: 30px; font-size: 1.1rem; color: rgba(255,255,255,0.8);">
+                Спасибо, что играли! Теперь поднимем бокалы за Ксю!<br>
+                🥂 За то, что в 30 она знает, чего хочет, и идёт к этому!
+            </p>
+        </div>
+    </div>
+
+    <!-- Навигация -->
+    <div class="nav-buttons">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Назад</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Вперёд →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 19;
+        let score = 0;
+        let answeredQuestions = new Set();
+
+        // Создание снежинок
+        function createSnowflakes() {
+            const symbols = ['❄️', '💜', '✨', '🌨️'];
+            for (let i = 0; i < 30; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = (Math.random() * 5 + 3) + 's';
+                snowflake.style.fontSize = (Math.random() * 1 + 1) + 'rem';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(snowflake);
+
+                setTimeout(() => snowflake.remove(), 8000);
+            }
+        }
+
+        // Проверка ответа
+        function checkAnswer(btn, isCorrect) {
+            const slide = btn.closest('.slide');
+            const slideIndex = parseInt(slide.dataset.slide);
+
+            if (answeredQuestions.has(slideIndex)) return;
+            answeredQuestions.add(slideIndex);
+
+            const buttons = slide.querySelectorAll('.option-btn');
+            const funFact = slide.querySelector('.fun-fact');
+
+            buttons.forEach(b => b.disabled = true);
+
+            if (isCorrect) {
+                btn.classList.add('correct');
+                score++;
+                updateScore();
+                createSnowflakes();
+            } else {
+                btn.classList.add('wrong');
+                buttons.forEach(b => {
+                    if (b.onclick.toString().includes('true')) {
+                        setTimeout(() => b.classList.add('correct'), 500);
+                    }
+                });
+            }
+
+            setTimeout(() => funFact.classList.add('show'), 300);
+        }
+
+        function updateScore() {
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            scoreDisplay.textContent = `💜 Знаете Ксю: ${score}/15`;
+            scoreDisplay.style.display = 'block';
+        }
+
+        // Смена слайда
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+
+            slides[currentSlide].classList.remove('active');
+            slides[currentSlide].classList.add(direction > 0 ? 'prev' : '');
+
+            currentSlide += direction;
+
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                if (index < currentSlide) slide.classList.add('prev');
+            });
+
+            slides[currentSlide].classList.add('active');
+
+            // Обновление прогресса
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            // Обновление кнопок
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+
+            // Показать счёт после начала вопросов
+            if (currentSlide >= 3 && currentSlide <= 17) {
+                document.getElementById('scoreDisplay').style.display = 'block';
+            } else if (currentSlide === 18) {
+                let message = '';
+                if (score >= 12) message = '💜🏆 Вы настоящий друг Ксю! Знаете её лучше, чем она сама!';
+                else if (score >= 8) message = '💜👍 Хорошо знаете Ксю, но есть куда стремиться!';
+                else if (score >= 5) message = '💜🤔 Вы знаете Ксю, но видимо не часто пьёте кофе вместе...';
+                else message = '💜😅 Кажется, вы пришли не на тот день рождения...';
+
+                document.getElementById('finalScore').innerHTML = `Ваш результат: ${score}/15<br><br>${message}`;
+                createSnowflakes();
+                setInterval(createSnowflakes, 2000);
+            }
+        }
+
+        // Клавиатурная навигация
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        // Инициализация
+        document.getElementById('prevBtn').disabled = true;
+        createSnowflakes();
+    </script>
+</body>
+</html>
